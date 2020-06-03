@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notesListFragment">
+
+    <fragment
+        android:id="@+id/notesListFragment"
+        android:name="com.example.myapplication.views.fragments.NotesListFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes_list" >
+        <action
+            android:id="@+id/action_notesListFragment_to_notesDetailFragment"
+            app:destination="@id/notesDetailFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_notesListFragment_to_addEditNoteFragment"
+            app:destination="@id/addEditNoteFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesDetailFragment"
+        android:name="com.example.myapplication.views.fragments.NotesDetailFragment"
+        android:label="Note Detail"
+        tools:layout="@layout/fragment_notes_detail" >
+        <argument
+            android:name="noteId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_notesDetailFragment_to_addEditNoteFragment"
+            app:destination="@id/addEditNoteFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNoteFragment"
+        android:name="com.example.myapplication.views.fragments.AddEditNoteFragment"
+        android:label="Add/Edit Note"
+        tools:layout="@layout/fragment_add_edit_note">
+        <argument
+            android:name="noteId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addEditNoteFragment_to_notesDetailFragment"
+            app:destination="@id/notesDetailFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+</navigation>

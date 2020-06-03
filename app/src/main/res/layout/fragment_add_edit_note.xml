@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.fragments.NotesDetailFragment">
+
+    <EditText
+        android:id="@+id/txt_title"
+        style="@android:style/Widget.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="title"
+        android:layout_gravity=""
+        android:inputType="textMultiLine|textAutoCorrect"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/editable_edit_text_bg"/>
+
+    <EditText
+        android:id="@+id/txt_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="top"
+        android:padding="8dp"
+        android:hint="description"
+        android:inputType="textMultiLine|textAutoCorrect"
+        android:textSize="16sp"
+        tools:text="description"
+        android:background="@drawable/editable_edit_text_bg"/>
+</LinearLayout>
