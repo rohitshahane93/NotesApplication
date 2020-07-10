@@ -7,7 +7,7 @@ import com.example.myapplication.data.dataClasses.Note
 @Dao
 interface NotesDao {
 
-    @Query("SELECT * FROM Notes")
+    @Query("SELECT * FROM Notes ORDER BY createdTime DESC")
     fun observeNotes(): LiveData<List<Note>>
 
     @Query("SELECT * FROM Notes WHERE id = :id")

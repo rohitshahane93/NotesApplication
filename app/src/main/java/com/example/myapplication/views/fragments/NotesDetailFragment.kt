@@ -10,15 +10,29 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
 import com.example.myapplication.data.dataClasses.Note
+import com.example.myapplication.data.enums.TextSizes
+import com.example.myapplication.util.Utils
 import com.example.myapplication.util.extensions.getViewModelFactory
-import com.example.myapplication.util.extensions.ids
 import com.example.myapplication.viewModels.NotesDetailViewModel
 import kotlinx.android.synthetic.main.fragment_notes_detail.*
+import kotlinx.android.synthetic.main.fragment_notes_list.*
 
 
 class NotesDetailFragment : Fragment() {
     private val viewModel by viewModels<NotesDetailViewModel> { getViewModelFactory() }
     private val args: NotesDetailFragmentArgs by navArgs()
+    private var currentSize = TextSizes.SIZE_6
+
+    private fun getNextSize(): TextSizes {
+        if (currentSize.size < TextSizes.SIZE_10.size) {
+            for (size in TextSizes.values()) {
+                if (size.size > currentSize.size) {
+                    return size
+                }
+            }
+        }
+        return TextSizes.SIZE_6
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +76,13 @@ class NotesDetailFragment : Fragment() {
             R.id.menu_delete -> {
                 showDeleteConfirmationDialog()
             }
+            R.id.menu_text_size -> {
+                currentSize = getNextSize()
+                txt_title.textSize =
+                    Utils.getPxForDp(requireContext(), currentSize.size.toFloat())
+                txt_desc.textSize =
+                    Utils.getPxForDp(requireContext(), currentSize.size.toFloat())
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -78,11 +99,12 @@ class NotesDetailFragment : Fragment() {
             .setMessage("Are you sure you want to delete this note?")
             .setPositiveButton("Yes") { _, _ ->
                 viewModel.deleteNote(args.noteId)
-                findNavController().popBackStack()
+                findNavController().popBackStack(R.id.notesListFragment, true)
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
     }
+
 }
